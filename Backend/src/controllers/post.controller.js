@@ -2,15 +2,21 @@ const postModel = require("../models/post.model")
 const ImageKit = require("@imagekit/nodejs")
 const { toFile } = require("@imagekit/nodejs")
 const jwt = require("jsonwebtoken")
-
+const multer = require("multer")
 
 const imagekit = new ImageKit({
     privateKey: process.env.IMAGEKIT_PRIVATE_KEY
 })
 
-
 async function createPostController(req, res) {
+
     console.log(req.body, req.file)
+
+    if (!req.file) {
+        return res.status(400).json({
+            message: "Image file is required"
+        })
+    }
 
     const token = req.cookies.token
 
@@ -30,11 +36,8 @@ async function createPostController(req, res) {
         })
     }
 
-
-    console.log(decoded)
-
     const file = await imagekit.files.upload({
-        file: await toFile(Buffer.from(req.file.buffer), 'file'),
+        file: await toFile(req.file.buffer, "file"),
         fileName: "Test",
         folder: "cohort-2-insta-clone-posts"
     })
@@ -129,7 +132,6 @@ async function getPostDetailsController(req, res) {
     })
 
 }
-
 
 module.exports = {
     createPostController,
