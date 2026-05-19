@@ -1,6 +1,6 @@
 const postModel = require("../models/post.model")
 const ImageKit = require("@imagekit/nodejs")
-const { toFile } = require("@imagekit/nodejs")
+const { toFile } = require("@imagekit/nodejs")   
 const jwt = require("jsonwebtoken")
 const multer = require("multer")
 
@@ -11,7 +11,6 @@ const imagekit = new ImageKit({
 async function createPostController(req, res) {
 
     console.log(req.body, req.file)
-
     if (!req.file) {
         return res.status(400).json({
             message: "Image file is required"
