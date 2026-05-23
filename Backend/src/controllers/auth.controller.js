@@ -1,51 +1,58 @@
-const userModel = require("../models/user.model")
-const jwt = require("jsonwebtoken")
+const userModel = require('../models/user.model')
 const bcrypt = require("bcryptjs")
+const jwt = require("jsonwebtoken")
 
 
 async function registerController(req, res) {
-    const { email, name, password, username, bio, profileImage } = req.body
+    const { email, username, password, bio, profileImage } = req.body
 
-    const isUserAlreadyExists = await userModel.findOne({ 
+    const isUserAlreadyExists = await userModel.findOne({
         $or: [
             { username },
             { email }
         ]
-     })
+    })
 
     if (isUserAlreadyExists) {
-        return res.status(409).json({
-            message: "User already exists" + (isUserAlreadyExists.email == email ? "email already exists" : "username already exists")
-        })
+        return res.status(409)
+            .json({
+                message: "User already exists " + (isUserAlreadyExists.email == email ? "Email already exists" : "Username already exists")
+            })
     }
 
     const hash = await bcrypt.hash(password, 10)
 
     const user = await userModel.create({
-        email, password: hash, username, bio, profileImage
+        username,
+        email,
+        bio,
+        profileImage,
+        password: hash
     })
 
     const token = jwt.sign(
         {
-            id: user._id,
-            email: user.email
+            id: user._id
         },
-        process.env.JWT_SECRET, {expiresIn:"1d"}
+        process.env.JWT_SECRET,
+        { expiresIn: "1d" }
     )
 
     res.cookie("token", token)
 
     res.status(201).json({
-        message: "user registered",
-        user:{
-            email:user.email,
-            username:user.username,
-            bio:user.bio,
+        message: "User Registered successfully",
+        user: {
+            email: user.email,
+            username: user.username,
+            bio: user.bio,
             profileImage: user.profileImage
-        },
-        token
+        }
     })
+
+
 }
+
 async function loginController(req, res) {
     const { username, email, password } = req.body
 
@@ -106,6 +113,7 @@ async function loginController(req, res) {
             }
         })
 }
+
 module.exports = {
     registerController,
     loginController
