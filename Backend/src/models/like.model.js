@@ -15,6 +15,7 @@ const likeSchema = new mongoose.Schema({
     timestamps: true
 })
 
+// one user can like post one time only
 likeSchema.index({ post: 1, user: 1 }, { unique: true })
 
 const likeModel = mongoose.model("likes", likeSchema)
