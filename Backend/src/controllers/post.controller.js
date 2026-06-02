@@ -11,11 +11,6 @@ const imagekit = new ImageKit({
 
 async function createPostController(req, res) {
 
-
-
-
-
-
     const file = await imagekit.files.upload({
         file: await toFile(Buffer.from(req.file.buffer), 'file'),
         fileName: "Test",
@@ -105,7 +100,6 @@ async function likePostController(req, res) {
     })
 
 }
-
 
 module.exports = {
     createPostController,
