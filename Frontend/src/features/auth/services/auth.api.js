@@ -1,3 +1,6 @@
+// authentication related work would be done here
+//API layer : used to only communicate with backend
+
 import axios from "axios";
 
 
