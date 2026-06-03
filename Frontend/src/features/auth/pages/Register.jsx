@@ -1,4 +1,4 @@
-ximport React, { useState } from 'react'
+import React, { useState } from 'react'
 import { Link } from 'react-router'
 import axios from 'axios'
 
@@ -17,6 +17,7 @@ const Register = () => {
             password,
         },{
             withCredentials:true
+            //axios by default na cookies send krta h na set krta h aur browser security k liye error deta hai toh isliye ye use krte hai
         })
         .then(res => {
             console.log(res.data)
