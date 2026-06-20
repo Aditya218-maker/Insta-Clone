@@ -127,7 +127,7 @@ async function unLikePostController(req, res) {
 async function getFeedController(req, res) {
 
     const user = req.user
-
+//using populate method we can get whole details of user instead of getting only user id
     const posts = await Promise.all((await postModel.find({}).populate("user").lean())
         .map(async (post) => {
             const isLiked = await likeModel.findOne({

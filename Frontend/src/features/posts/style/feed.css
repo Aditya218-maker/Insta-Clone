@@ -13,15 +13,17 @@
   display: flex;
   flex-direction: column;
   gap: 0.1rem;
+  border-radius: 10px;
 }
 .feed-page .feed .post {
   width: 100%;
   display: flex;
   flex-direction: column;
   gap: 0.5rem;
-  background-color: #312626;
+  background-color: #393737;
   padding-inline: 0.5rem;
   padding-block: 0.5rem;
+  border-radius: 10px;
 }
 .feed-page .feed .post .user {
   display: flex;

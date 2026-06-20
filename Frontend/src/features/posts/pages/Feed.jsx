@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react'
+import { useEffect } from 'react'
 import "../style/feed.scss"
 import Post from '../components/Post'
 import { usePost } from '../hook/usePost'
@@ -17,8 +17,6 @@ const Feed = () => {
     }
 
     console.log(feed)
-
-
 
 
     return (
