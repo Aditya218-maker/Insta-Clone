@@ -1,4 +1,4 @@
-//State Layer
+//State Layer : manages all states of user and loading state. It is like a storage that stores data
 
 import { createContext, useState } from "react";
 

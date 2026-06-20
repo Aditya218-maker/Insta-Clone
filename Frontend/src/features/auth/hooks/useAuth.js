@@ -1,7 +1,10 @@
-//Hooks layer - Creating Custom Hooks
+//Hook layer - Creating Custom Hooks
+//Hook layer manages both state and Api layer
+
+
 import { useContext } from 'react'
 import { AuthContext } from '../auth.context'
-import { login, register, getMe } from '../services/auth.api'
+import { login, register } from '../services/auth.api'
 
 export const useAuth = () => {
   const context = useContext(AuthContext)
