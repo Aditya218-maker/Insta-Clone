@@ -1,4 +1,4 @@
-import React, { useState, useRef } from 'react'
+import { useState, useRef } from 'react'
 import "../style/createpost.scss"
 import { usePost } from '../hook/usePost'
 import { useNavigate } from 'react-router'
