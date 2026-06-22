@@ -15,9 +15,7 @@ const CreatePost = () => {
     async function handleSubmit(e) {
         e.preventDefault()
         const file = postImageInputFieldRef.current.files[ 0 ]
-
         await handleCreatePost(file,caption)
-
         navigate('/')
 
     }
